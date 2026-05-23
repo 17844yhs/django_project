@@ -1,0 +1,91 @@
+/* text-align 主要用于文本和行内元素的对齐。
+margin: auto 用于块级元素的居中。
+flexbox 和 grid 布局提供了更加灵活的对齐方式，适合复杂的布局需求。 */
+
+.footer-top{
+    height: 75px;
+    color: #616161;
+    padding: 27px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.footer-top a{
+   width: 20%;
+   text-align: center;
+   font-size: 16px;
+   height: 20px;
+   line-height: 20px;
+   border-right: 1px solid #e0e0e0;
+}
+.footer-top a:last-child{
+    border-right: none;
+}
+.footer-top .iconfont{
+    font-size: 26px;
+    /* vertical-align 用于调整元素的垂直对齐方式。默认情况下，图标可能与文本或者其他内容的对齐方式略有不同。-4px 表示将图标向上移动 4 像素，这样可以使它与周围的元素在垂直方向上对齐得更好。通常，图标和文本可能需要细微的垂直调整来确保它们看起来更加对齐。 */
+    vertical-align: -4px;
+}
+
+.footer-botton{
+    padding: 40px 0;
+}
+
+.footer-links{
+    width: 160px;
+    color: #757575;
+}
+.footer-links h3{
+    font-size: 14px;
+    font-weight: normal;
+    color: #424242;
+    margin-bottom: 17px;
+}
+.footer-links a{
+    font-size: 12px;
+    display: block;
+    margin-top: 10px;
+}
+
+.footer-contact{
+    width: 245px;
+    /* text-align: center; 是用于控制 块级元素内文本 水平对齐的 CSS 属性。它的作用是将块级元素中的文本（或行内元素）水平居中。 */
+    text-align: center;
+    border-left: 1px solid #e0e0e0;
+    font-size: 12px;
+}
+.footer-phone{
+    font-size: 22px;
+    color: #ff6700;
+}
+.footer-phone-desc{
+    color: #616161;
+}
+.footer-suport{
+    display: inline-block;
+    width: 118px;
+    border: 1px solid #ff6700;
+    color: #ff6700;
+    height: 30px;
+    line-height: 30px;
+
+}
+
+.footer-suport .iconfont{
+    vertical-align: -2px;
+    font-size: 14px;
+}
+.footer-suport:hover{
+    color: #fff;
+    background-color: #ff6700;
+}
+.footer-subcribe{
+    color: #616161;
+}
+.footer-subcribe .iconfont{
+    font-size: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.footer-subcribe .iconfont:hover{
+   color: #ff6700   ; 
+}

@@ -1,0 +1,244 @@
+.header{
+    height: 100px;
+}
+.header-logo h1{
+    display: none
+}
+.header-logo{
+    /* 这个值指定背景图像 不重复。默认情况下，背景图像会沿着 X 和 Y 轴进行平铺（即重复显示），但使用 no-repeat 可以让图像只显示一次，且不会进行平铺。 */
+    background: url('../img/logo.png') no-repeat;
+    width: 56px;
+    height: 56px;
+    background-size: 100% 100%;
+    margin-top: 22px;
+    margin-right: 172px;
+}
+/* 这个选择器选择的是 .header-menu 类中的所有 直接子元素 <a> 标签。> 是子选择器，表示只选择 .header-menu 的直接子元素 <a>，而不包括嵌套在更深层的 <a> 标签 */
+.header-menu > a {
+    height: 100px;
+    line-height: 100px;
+    padding: 0 10px;
+    font-size: 16px;
+}
+/* 二级菜单 */
+.header{
+    position: relative;
+}
+/* 层叠顺序：如果没有设置 z-index，默认情况下，后面声明的元素会显示在前面声明的元素之上。
+整数值：z-index 接受整数值，正值、负值、零值都可以使用，正值表示在前面，负值表示在后面，零值则表示正常堆叠顺序。 */
+/* 嵌套上下文：如果父元素设置了 z-index，它的子元素的 z-index 是相对于父元素的，而不是整个文档。 */
+.header-submenu{
+    display: none;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 100px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #cccc;
+    position: absolute;
+    padding: 30px 0;
+    z-index: 33;
+    background-color: #fff;
+}
+.header-menu:hover .header-submenu{
+    display: block;
+}
+
+.header-cover img{
+    width: 160px;
+    height: 110px;
+}
+.header-submenu a{
+    width: 204px;
+    text-align: center;
+    font-size: 12px;
+}
+.header-cover {
+    border-right: 1px solid #eee;
+}
+.header-submenu a:last-child .header-cover{
+    border-right: none;
+}
+.header-name{
+   margin-top: 10px;
+   color: #333;
+}
+.header-price{
+    color:#ff6700;
+}
+.header-search{
+    margin-top: 25px;
+    height: 50px;
+    position: relative;
+}
+.header-search input{
+    width: 245px;
+    height: 50px;
+    padding:0 15px;
+    font-size: 16px;
+    border:1px solid #ccc;
+    /* 用来移除元素的轮廓，常用于自定义样式时，但需要确保在不影响用户体验的情况下使用，尤其是对于需要键盘导航的元素。 */
+    outline: none;
+}
+.header-search .header-searchicon {
+    width: 55px;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-left: none;
+    /* cursor: pointer; 用于将鼠标指针变成手指形状，通常用于表示元素是可点击的。这有助于提升用户体验，特别是在用户界面中标识可交互的元素。 */
+    cursor:pointer;
+    color: #777;
+   
+}
+.header-searchicon .iconfont{
+    font-size: 20px;
+
+}
+.header-suggest{
+    position: absolute;
+    width: 245px;
+    left: 0;
+    top: 50px;
+    border: 1px solid #ff6700;
+    border-top: none;
+    z-index: 60;
+    background-color: #fff;
+    display: none;
+}
+.header-suggest a{
+    display: block;
+    padding: 0 15px;
+    font-size: 12px;
+    line-height: 30px;
+    height: 30px;
+}
+/* ~ 是 通用兄弟选择器，用于选择在指定元素之后的所有兄弟元素。 */
+.header-suggest a:hover~.header-searchicon { 
+    background-color: #eee;
+    color: inherit;
+}
+.header-search input:focus ~ .header-suggest{
+    display: block;
+}
+
+.header-search input:hover {
+    border: 1px solid #aaa;
+}
+
+.header-search input:focus {
+    border: 1px solid #ff6700;
+}
+.header-search input:focus ~ .header-searchicon {
+    border: 1px solid #ff6700;
+}
+.header-searchicon:hover {
+    background-color: #ff6700;
+    border-color: #ff6700;
+    color: #fff;
+    
+}
+
+ /* 搜索框区域 - 核心修复部分 */
+        .header-search {
+            margin-top: 25px;
+            height: 50px;
+            position: relative;
+            display: flex;
+        }
+        
+        .header-search-input-container {
+            display: flex;
+            position: relative;
+        }
+        
+        .header-search input {
+            width: 245px;
+            height: 50px;
+            padding: 0 15px;
+            font-size: 16px;
+            border: 1px solid #e0e0e0;
+            border-right: none;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .header-search input:hover {
+            border-color: #b0b0b0;
+        }
+        
+        .header-search input:focus {
+            border-color: #ff6700;
+            box-shadow: 0 0 0 1px #ff6700;
+        }
+        
+        .header-search .header-searchicon {
+            width: 55px;
+            height: 50px;
+            border: 1px solid #e0e0e0;
+            border-left: none;
+            background: #fff;
+            color: #777;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .header-search .header-searchicon:hover {
+            background-color: #ff6700;
+            border-color: #ff6700;
+            color: #fff;
+        }
+        
+        .header-searchicon .iconfont {
+            font-size: 20px;
+        }
+        
+        /* 建议框修复 - 关键部分 */
+        .header-suggest {
+            position: absolute;
+            width: 300px; /* 输入框245px + 按钮55px */
+            left: 0;
+            top: 50px;
+            border: 1px solid #ff6700;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            z-index: 60;
+            background-color: #fff;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        /* 修复1: 使用:focus-within控制显示 */
+        .header-search:focus-within .header-suggest {
+            display: block;
+        }
+        
+        .header-suggest a {
+            display: block;
+            padding: 0 15px;
+            font-size: 14px;
+            line-height: 38px;
+            height: 38px;
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-suggest a i {
+            color: #999;
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .header-suggest a:hover {
+            background-color: #f5f5f5;
+            color: #ff6700;
+        }
+        
+        .header-suggest a:hover i {
+            color: #ff6700;
+        }

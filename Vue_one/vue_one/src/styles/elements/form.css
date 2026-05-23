@@ -1,0 +1,105 @@
+/* 关键样式配置 */
+.container {
+    min-height: 100vh; /* 占据全屏高度 */
+    overflow: hidden;   /* 消除全局滚动条 */
+  }
+  
+  .aside {
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    flex: 1; /* 自动填充剩余空间 */
+  }
+  
+  .form-container {
+    width: 80%; /* 相对父容器比例 */
+    max-width: 520px; /* 视觉最佳宽度 */
+    padding: 2rem;
+    box-sizing: border-box; /* 防止溢出 */
+  }.enhanced-form {
+    /* 弹性布局适配 */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* 元素间距统一控制 */
+  
+    /* 标题优化 */
+    h3 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem !important;
+    }
+  
+    /* 输入框尺寸优化 */
+    .el-form-item {
+      margin-bottom: 0; /* 禁用默认间距 */
+      
+      .el-input {
+        --el-input-height: 48px; /* 输入框高度 */
+        font-size: 1rem;
+      }
+    }
+  
+    /* 按钮组布局 */
+    .el-form-item:last-child {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      
+      .el-button {
+        flex: 1; /* 按钮等宽 */
+        height: 48px;
+        font-size: 1.1rem;
+      }
+    }
+    
+    /* 记住密码复选框 */
+    .el-checkbox {
+      margin-top: 1rem;
+      .el-checkbox__label {
+        font-size: 0.9rem;
+      }
+    }
+  }.enhanced-form {
+    /* 弹性布局适配 */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* 元素间距统一控制 */
+  
+    /* 标题优化 */
+    h3 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem !important;
+    }
+  
+    /* 输入框尺寸优化 */
+    .el-form-item {
+      margin-bottom: 0; /* 禁用默认间距 */
+      
+      .el-input {
+        --el-input-height: 48px; /* 输入框高度 */
+        font-size: 1rem;
+      }
+    }
+  
+    /* 按钮组布局 */
+    .el-form-item:last-child {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      
+      .el-button {
+        flex: 1; /* 按钮等宽 */
+        height: 48px;
+        font-size: 1.1rem;
+      }
+    }
+    
+    /* 记住密码复选框 */
+    .el-checkbox {
+      margin-top: 1rem;
+      .el-checkbox__label {
+        font-size: 0.9rem;
+      }
+    }
+  }

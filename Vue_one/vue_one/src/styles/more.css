@@ -1,0 +1,53 @@
+/* 设置全局的背景色和字体颜色 */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  /* 常用的布局容器 */
+  .container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+  }
+  
+  /* 标题样式 */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: #222;
+  }
+  
+  /* 均匀的按钮样式 */
+  button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* 输入框样式 */
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  /* 链接样式 */
+  a {
+    color: #1e90ff;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  

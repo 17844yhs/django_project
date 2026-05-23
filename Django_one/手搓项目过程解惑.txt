@@ -1,0 +1,141 @@
+1.特性 / 工具	Conda	Miniconda	virtualenv	下载的 Python 环境 (标准 Python)
+主要用途	包管理 + 环境管理	轻量版的 Conda，包管理 + 环境管理	Python 环境隔离管理	标准 Python 解释器与包管理
+支持的语言	Python 及其他语言（R、Ruby 等）	Python 及其他语言（R、Ruby 等）	仅 Python	仅 Python
+包管理工具	Conda	Conda	pip	pip
+环境隔离	支持环境隔离，管理多个 Python 版本	支持环境隔离，管理多个 Python 版本	只支持 Python 环境隔离	无法原生支持环境隔离
+安装包数量	提供大量预装包，适合科学计算和数据分析	没有预装包，用户按需安装	不提供预装包，用户按需安装	不提供预装包，用户按需安装
+依赖关系管理	强大的依赖管理功能	强大的依赖管理功能	仅限 Python 包管理	需要手动管理依赖关系
+
+如果你需要一个完整的、跨语言的环境管理工具（比如要管理 Python 和其他语言的包），那么使用 Conda 或 Miniconda 会更加方便。
+如果你仅仅需要为不同的 Python 项目创建隔离的环境，并且希望避免外部依赖管理工具，可以使用 virtualenv。
+如果你只是进行简单的 Python 开发，不需要过多的环境管理，直接使用 下载的 Python 环境 和 pip 即可。
+
+2.QuerySet 是一个包含多个模型实例的查询集，它是 Django 用来处理数据库查询的核心数据结构。
+它代表了符合条件的数据库记录，并且在需要时才会执行查询。
+QuerySet 是懒加载的，可以被迭代、转换为列表、切片等，灵活地操作查询结果。
+
+3.假设你正在创建一个流文件并保存一个图片，在 stream 中存储了图像的数据。如果你直接将流传递给响应，Django 将尝试从当前位置开始读取流的数据。如果在此之前已经有读取操作，流的位置可能已经被移动，这样返回的内容就不完整，浏览器可能无法正确显示图片。
+
+4.Django 默认会生成 sessionid，但是如果你不想使用它，可以选择不使用，只需自己实现会话机制（例如使用 JWT 或自定义的 sessionid）。
+你完全可以通过 API 返回自定义的 sessionid 或 JWT，前端将其存储并每次请求时携带。
+如果你选择使用 JWT，服务器无需存储会话信息，适用于无状态的认证机制，且适合跨域和分布式应用。
+
+5.CORS_ALLOW_CREDENTIALS = True 是后端说：“我允许你这个跨域请求带上凭证来访问我的接口。”
+SESSION_COOKIE_SAMESITE = 'None' 是浏览器说：“我允许这个跨站请求时带上 cookie。
+使用场景	是否需要添加 SESSION_COOKIE_* 配置？	Cookie 属性控制方式
+Django 自带 Session 框架	必须添加	通过 settings.py 中的 SESSION_COOKIE_* 配置
+自定义 Cookie（手动 set_cookie）	不需要添加	直接在 set_cookie 方法中指定参数（samesite、secure 等）
+
+6.default 是 Python 层面的默认值，用来在 Django 的模型实例中设置默认值。
+db_default 是数据库层面的默认值，用来设置数据库表字段的默认值。
+在绝大多数情况下，default 足够使用，因为它已经在 Python 和数据库层面都起到了作用。但是如果你需要在数据库层面确保默认值的存在，尤其是当你直接操作数据库（例如通过 SQL）时，使用 db_default 会更合适
+
+7.假设有一个 Author 和 Book 的模型关系，如果我们使用：
+author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books', related_query_name='book')
+related_name='books'：在反向查询时，Author 实例通过 books 访问其相关的 Book 实例。
+related_query_name='book'：在查询时，你可以通过 book 来进行查询过滤，比如：Author.objects.filter(book__title='Some Title')。
+
+8.问题1：max_quantity = serializers.SerializerMethodField(read_only=True) 对应哪个方法？
+在 DRF 序列化器中，SerializerMethodField 需要配套一个对应的 get_字段名 方法。这里：
+max_quantity = serializers.SerializerMethodField(read_only=True)
+对应的是：
+def get_max_quantity(self, obj):
+    """返回当前商品的最大可购买数量（库存）"""
+    return obj.goods.stock
+这是 DRF 的约定规则 - 当使用 SerializerMethodField 时，会自动查找名为 get_<field_name> 的方法来获取值。
+
+问题2：为什么模型已经有 subtotal 属性还要在序列化器中定义 get_subtotal？
+1. 显式控制序列化行为
+DRF 不会自动识别模型的 @property 作为可序列化字段。
+2.未来扩展灵活性
+如果以后需要修改计算逻辑（比如添加折扣），只需改序列化器方法而不影响模型
+
+9.模型中的成员类型	是否需要显式序列化器定义	示例方式
+普通字段（如quantity）	否	自动包含，只需在fields中列出
+@property方法	是	SerializerMethodField 或 source='属性名'
+普通方法	是	必须用SerializerMethodField手动调用
+需要特殊处理的普通字段	是	显式定义字段并添加参数（如min_value）
+
+10.操作	序列化器作用	示例场景
+Create	将前端 JSON 转为模型，验证后保存到数据库	添加新商品到购物车
+Read	将模型数据转为 JSON，包含关联字段和计算逻辑	查看购物车列表
+Update	处理部分更新（如只修改数量），验证后更新模型	修改商品数量
+Delete	通常不需要序列化器，直接通过视图处理	删除购物车中的某商品
+
+11.序列化器验证库存数量和模型验证库存数量
+验证层级	触发场景	优点	缺点
+模型层	调用 save() 时触发	确保最终数据一致性	错误反馈不够详细
+序列化器层	调用 is_valid() 时触发	可提前返回友好错误信息	需要与模型层保持同步
+优点：
+前端优先收到清晰的 400 错误
+模型层作为最后防线保证数据安全
+可扩展不同验证逻辑（如：序列化器检查临时库存，模型检查实时库存）
+
+12.PrimaryKeyRelatedField 常用于：
+        在模型中处理外键关系，并允许客户端通过主键来指定关联对象。
+        在序列化和反序列化过程中处理外键字段，尤其是当客户端只提供外键的主键值时。
+        进行外键验证，确保关联的对象存在并且有效。
+PrimaryKeyRelatedField 允许你直接传递外键的主键 ID（例如 goods_id），并自动验证这个主键 ID 是否在相关模型（Goods）中存在。
+如果验证通过，它会把主键映射到外键字段。
+如果验证失败（即主键无效），会抛出 ValidationError。
+source是指定存入到attr的名称
+
+13.validate() 是序列化器中的业务逻辑验证方法，它在序列化器保存数据之前执行。
+
+14.attrs 是自己创建的新字典吗？
+        attrs 是 Django 序列化器在执行 validate 方法时传递的一个字典。它包含了所有字段的值，并可以在此字典上进行修改或验证。你可以理解为 attrs 是一个临时字典，它包含了客户端发送的所有数据字段。
+        在方法内修改 attrs 可以影响后续的验证和数据保存。你可以在 attrs 中加入额外的字段，或者根据业务逻辑进行修改。
+为什么要返回 attrs？
+        在序列化器的 validate 方法中，返回 attrs 是为了确保经过验证后的数据被正确地传递到下一步（例如保存数据到数据库）。如果在验证过程中做了修改或添加额外的处理，返回 attrs 以便后续的步骤可以使用这些修改后的数据。
+# 视图调用
+serializer = CartItemWriteSerializer(data=request.data)
+# 序列化器内部
+self.instance → None  # 因为是新增，没有已存在的实例
+attrs → {'goods': <Goods>, 'quantity': 2, 'user_phone': '13800138000'}  # 来自请求的新数据
+
+# 视图调用
+item = CartItem.objects.get(id=1)
+serializer = CartItemWriteSerializer(instance=item, data=request.data)
+# 序列化器内部
+self.instance → <CartItem id=1>  # 已存在的购物车商品实例
+attrs → {'quantity': 3}          # 用户想修改的新数据
+
+16.方法	调用场景	参数来源
+create()	当调用 serializer.save() 且序列化器没有实例（即新增操作）时	validated_data 来自 serializer.is_valid() 后的验证数据
+update()	当调用 serializer.save() 且序列化器有实例（即修改操作）时	instance 是当前修改的对象，validated_data 来自验证后的数据
+
+# 当你在视图调用 serializer.save() 时：
+serializer.save()  
+# 等价于：
+serializer.create(validated_data=serializer.validated_data)
+validated_data 包含：
+        通过 serializer.is_valid() 验证后的数据
+        从请求数据中提取的字段（如 goods_id, quantity）
+        你在 validate() 方法中手动添加的数据（如 cart 对象）
+
+# 当你在视图调用 serializer.save() 且序列化器已绑定实例时：
+serializer.save()  
+# 等价于：
+serializer.update(instance=serializer.instance, validated_data=serializer.validated_data)
+instance：视图中通过 get_object() 获取的模型实例
+validated_data：验证后的请求数据
+
+在 更新操作（PUT/PATCH）时，DRF 会自动将数据库中的现有对象传入序列化器作为 instance
+在 创建操作（POST）时，self.instance 为 None
+
+17.fields 列表的作用仅仅是控制哪些字段会被序列化器验证和使用，而 write_only=True 确保了字段不会在响应中返回。
+
+18.序列化器里面 validate_<字段名> 方法：专门用来验证单个字段的数据是否合法。
+validate_fields：你可以自定义这个方法来做更复杂的联合验证，或者做全局的验证。例如，当需要根据多个字段的数据判断是否合法时，validate_fields 会非常有用。
+
+def validate(self, attrs):
+用途：验证多个字段之间的关系，或者做全局检查
+
+19.args：
+args 是一个元组，通常用来获取通过 位置参数 传递的数据。
+在 Django 中，args 一般用于获取通过查询字符串（例如 GET 请求中的参数）传递的内容或者函数调用中的位置参数。
+
+kwargs：
+kwargs 是一个字典，表示 关键字参数，通常用于获取通过 URL 路由传递的 动态路径参数（例如 URL 中指定的 pk 或 user_id）。
+在 Django 的视图中，URL 路由模式会根据路径中的动态部分自动将它们作为关键字参数传递给视图函数（或方法）。例如，在一个 URL 模式为 path('user/<int:pk>/', views.UserDetail.as_view()) 中，pk 就会作为关键字参数传递给 kwargs。
+

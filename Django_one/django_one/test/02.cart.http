@@ -1,0 +1,41 @@
+### 测试获取分类信息
+GET http://localhost:8000/apit/category/
+
+### 测试根据分类id获取商品信息
+GET http://localhost:8000/apit/goodsbycategory/?id=3
+
+### 测试根据模糊查询获取商品信息
+GET http://localhost:8000/apit/goodsbyname/?name=手机
+
+
+### 测试获取购物车数据
+GET http://localhost:8000/apit/cart/
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE4MDU2ODYzMDUsInBob25lIjoiMTgwOTA0ODA2MjciLCJwd2QiOiIxMjM0NTYiLCJzZXJjZXQiOiIxMjM0In0.POXOA6DhDwKmHq9SUvIj88mCZadAd5Mgjk7oUbN-pKo
+
+### 测试增加购物车数据
+POST http://localhost:8000/apit/cart/item/create/
+Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE4MDc3NzUxMTUsInBob25lIjoiMTgwOTA0ODA2MjciLCJwd2QiOiIxMjM0NTYiLCJzZXJjZXQiOiIxMjM0In0.S4bBaI0IIrmrDS46lNNAVBtdCENc2y9FNviNoGBWfRk
+
+{
+    "goods_id": 7,
+    "quantity": 1,
+    "phone":18090480627
+}
+
+
+### 测试更新购物车数据
+PUT  http://localhost:8000/apit/cart/item/update/24
+Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE4MDU2ODYzMDUsInBob25lIjoiMTgwOTA0ODA2MjciLCJwd2QiOiIxMjM0NTYiLCJzZXJjZXQiOiIxMjM0In0.POXOA6DhDwKmHq9SUvIj88mCZadAd5Mgjk7oUbN-pKo
+
+{
+    "goods_id": 5,
+    "quantity": 8,
+    "phone":18090480627
+}
+
+
+### 测试删除购物车商品
+DELETE http://localhost:8000/apit/cart/item/delete/20
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE4MDc4NDA1NzcsInBob25lIjoiMTgwOTA0ODA2MjciLCJwd2QiOiIxMjM0NTYiLCJzZXJjZXQiOiIxMjM0In0.i9VNuLVcQ20uutTABe9mk2IZFLuqtIXD_E9HgnbIBgQ

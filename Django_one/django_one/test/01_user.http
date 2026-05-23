@@ -1,0 +1,22 @@
+### 测试用户注册功能
+POST http://localhost:8000/api/register/
+Content-Type: application/json
+
+{
+  "phone": "18090480627",
+  "pwd": "123456"
+}
+
+### 测试用户登录功能
+POST http://127.0.0.1:8000/api/login/
+Content-Type: application/json
+
+{
+  "phone": "18090480627",
+  "pwd": "123456",
+  "code":"1234"
+}
+
+### 测试获取单个用户信息
+GET http://127.0.0.1:8000/api/user/3
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE4MDU2ODYzMDUsInBob25lIjoiMTgwOTA0ODA2MjciLCJwd2QiOiIxMjM0NTYiLCJzZXJjZXQiOiIxMjM0In0.POXOA6DhDwKmHq9SUvIj88mCZadAd5Mgjk7oUbN-pKo

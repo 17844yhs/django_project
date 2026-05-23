@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>你好</h1>
+    请输入验证码:<input type="text" name="captcha" id=""><br>
+
+    <img src="{% url 'code' %}" alt="" onclick="changeCode(this)"><br> <script>
+    function changeCode(obj){
+      obj.src = "{% url 'code' %}?r="+Math.random();
+     }
+</script>
+
+</body>
+</html>

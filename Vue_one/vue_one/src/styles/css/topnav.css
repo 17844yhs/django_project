@@ -1,0 +1,445 @@
+.topnav{
+    height: 40px;
+    background-color: #333;
+    color:#b0b0b0;
+    font-size: 12px;
+}
+.topnav-menu{
+    line-height: 40px;
+}
+.topnav-menu a{
+    padding: 0 7px;
+    border-right: 1px solid #424242;
+}
+.topnav-menu li:first-child a{
+    padding-left: 0;
+}
+.topnav-menu li:last-child a{
+    border-right: none;
+}
+.topnav-menu a:hover{
+   color: #fff;
+}
+
+/* 购物车
+ */
+/* position: relative; 主要作用是让 .topnav-car 元素成为一个定位上下文的参照物，允许内部的绝对定位元素相对于它进行定位，或者用来微调该元素的位置，而不会影响它在文档流中的位置。如果没有后续的定位属性或内部的绝对定位元素，这个 relative 的设置本身不会对 .topnav-car 元素产生明显的影响。 */
+ .topnav-car{
+    height: 40px;
+    width: 120px;
+    background-color: #424242;
+    margin-left: 13px;
+    position: relative;
+ }
+ .topnav-link{
+    height: 100%;
+    width: 100%;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+ }
+ 
+ .topnav-link .iconfont{
+    margin-right: 3px;
+ }
+ .topnav-detail{
+    width: 320px;
+    height: 100px;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    text-align: center;
+    line-height: 100px;
+    display: none;
+    z-index: 55;
+ }
+ .topnav-car:hover .topnav-detail{
+    display: block;
+
+ }
+ .topnav-car:hover .topnav-link{
+    background-color: #fff;
+    color: #ff6700;
+ }
+
+ /* 用户信息样式 */
+.user-info {
+    padding: 0 7px;
+}
+
+.user-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.user-name {
+    vertical-align: middle;
+    max-width: 60px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 新增购物车内容样式 - 优化版 */
+.cart-content {
+    padding: 15px;
+    background: linear-gradient(135deg, #ffffff, #fafafa);
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cart-title {
+    font-size: 14px;
+    color: #ff6700;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.cart-items {
+    max-height: 280px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    background: #fff;
+    border-radius: 4px;
+    padding: 0 10px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.03);
+}
+
+.cart-item {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid #f8f8f8;
+    transition: all 0.3s;
+}
+
+.cart-item:hover {
+    background: #f9f9f9;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.item-img {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #f5f5f5;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.cart-item:hover .item-img img {
+    transform: scale(1.05);
+}
+
+.item-info {
+    flex: 1;
+    padding: 2px 0;
+}
+
+.item-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-price {
+    font-size: 13px;
+    color: #ff6700;
+    font-weight: bold;
+}
+
+.item-quantity {
+    font-size: 12px;
+    color: #757575;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.cart-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 2px solid #ff6700;
+    background: #fff;
+    padding: 12px 15px;
+    margin: 0 -15px -15px;
+    border-radius: 0 0 4px 4px;
+}
+
+.total-price {
+    font-size: 16px;
+    color: #ff6700;
+    font-weight: bold;
+}
+
+.total-price span {
+    font-size: 12px;
+    color: #757575;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+.btn-checkout {
+    background: linear-gradient(to right, #ff6700, #ff8833);
+    color: #fff;
+    border: none;
+    padding: 8px 22px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(255,103,0,0.3);
+}
+
+.btn-checkout:hover {
+    background: linear-gradient(to right, #f25807, #ff7733);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255,103,0,0.4);
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 30px 0;
+    color: #999;
+    font-size: 14px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.empty-cart i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #e0e0e0;
+}
+
+.empty-cart p {
+    margin-top: 10px;
+    color: #666;
+}
+
+/* 添加滚动条样式 */
+.cart-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 4px;
+}
+
+.cart-items::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+}
+.item-name {
+    /* 原有样式 */
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 5px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+    /* 确保元素可见 */
+    display: block;
+    opacity: 1;
+    background: transparent;
+}    /* 购物车内容样式 - 修复版 */
+        .cart-content {
+            padding: 15px;
+            background: #fff;
+        }
+        
+        .cart-title {
+            font-size: 14px;
+            color: #ff6700;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .cart-items {
+            max-height: 280px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+        
+        .cart-item {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px solid #f8f8f8;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-img {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #f5f5f5;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            flex-shrink: 0; /* 防止图片容器被压缩 */
+        }
+        
+        .item-img img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block; /* 修复图片显示问题 */
+        }
+        
+        .item-info {
+            flex: 1;
+            min-width: 0; /* 关键修复：允许文本溢出处理 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .item-name {
+            font-size: 12px;
+            color: #333;
+            margin-bottom: 5px;
+            margin-top: -30px;
+            overflow: visible;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: flex; /* 确保正确显示 */
+            width: 100%; /* 确保宽度正确 */
+        }
+        
+        .item-details {
+            width: 100%;
+            height: 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .item-price {
+            font-size: 13px;
+            color: #ff6700;
+            font-weight: bold;
+        }
+
+        
+        .cart-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 2px solid #ff6700;
+        }
+        
+        .total-price {
+            font-size: 16px;
+            color: #ff6700;
+            font-weight: bold;
+        }
+        
+        .total-price span {
+            font-size: 12px;
+            color: #757575;
+            font-weight: normal;
+            margin-right: 5px;
+        }
+        
+        .btn-checkout {
+            background: #ff6700;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.3s;
+        }
+        
+        .btn-checkout:hover {
+            background: #f25807;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+            color: #757575;
+            font-size: 14px;
+        }
+        
+        .empty-cart i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* 新增乘号专属样式 */
+        .multiply-symbol {
+            color: #ff6700; /* 使用小米主题色 */
+            font-weight: bold;
+            font-size: 15px;
+            margin: 0 4px;
+            transform: scale(1.1);
+            display: inline-block;
+            position: relative;
+            top: -1px;
+            opacity: 0.85;
+            transition: all 0.2s ease;
+        }
+        
+        .multiply-symbol:hover {
+            color: #e25822;
+            opacity: 1;
+            transform: scale(1.2);
+            text-shadow: 0 0 5px rgba(255, 103, 0, 0.3);
+        }
+        
+
+        
+        .multiply-symbol.animated {
+            animation: pulse 1.5s infinite;
+        }

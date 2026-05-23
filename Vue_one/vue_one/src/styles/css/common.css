@@ -1,0 +1,59 @@
+/*
+通用css代码
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    /* 用于去除列表项目（如 <ul> 或 <ol> 标签）默认的样式。 */
+    list-style:none;
+    /* 用于定义元素的宽度和高度是否包括内边距（padding）和边框（border）。 */
+    box-sizing:border-box;
+}
+/* *::before 和 *::after 表示在所有元素的 ::before 和 ::after 伪元素上应用 box-sizing: border-box;，确保这些伪元素的宽度和高度包括内边距（padding）和边框（border）。这通常是为了确保这些伪元素的布局行为与其他元素一致，避免在计算其大小时出现意外的溢出。 */
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+a{
+    /* 去掉下划线 */
+    text-decoration:none;
+    color:inherit;
+}
+a:hover{
+    color:#ff6700;
+}
+html {
+    color: #333;
+    /* 最小宽度，根据设计师的要求 */
+    min-width: 1226px;
+    font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei',
+      'Hiragino Sans GB', 'Heiti SC', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+/* 浮动处理 */
+
+/* 左浮动 */
+.fl{
+    float:left;
+}
+/* 右浮动 */
+.fr{
+    float:right;
+}
+/* 清除浮动：浮动会导致父元素的高度坍塌，所以我们要清楚浮动 */
+/* 当你使用 float 属性将子元素浮动时，父元素不会自动扩展以包含浮动的子元素，这会导致父元素的高度变为零，从而影响页面布局。 */
+/* clearfix 技巧通过为父元素添加一个 ::after 伪元素，并设置其 clear: both，可以强制父元素扩展到浮动子元素的高度，从而解决这个问题。 */
+.clearfix::after{
+    content:'';
+    display: block;
+    clear: both;
+}
+
+
+/* 通用容器 */
+.container{
+    width: 1226px;
+    margin-left: auto;
+    margin-right: auto;
+}

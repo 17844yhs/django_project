@@ -1,0 +1,80 @@
+1.功能	代码示例	作用
+创建路由实例	createRouter(...)	创建 Vue Router 实例
+导入路由实例	import router from '@/router'	导入你自己定义的路由实例
+获取当前路由	const route = useRoute()	组件内获取当前路由信息
+路由导航（编程式跳转）	router.push('/path')	使用路由实例跳转
+
+2.在 <script setup> 语法中，导入的组件会自动注册，它不会影响传统的 export default 组件方式。 
+<script>
+import MyComponent from './MyComponent.vue'
+
+export default {
+  components: {
+    MyComponent
+  }
+}
+</script>
+
+VUE3
+<script setup>
+import MyComponent from './MyComponent.vue'
+</script>
+
+<template>
+  <MyComponent />
+</template>
+<template>
+  <MyComponent />
+</template>
+
+3.vertical-align：用于行内元素和行内块元素的垂直对齐。
+line-height：通过设置 line-height 来实现单行文本的垂直居中。
+flexbox 和 grid：非常方便的布局方式，支持在容器内垂直对齐子元素。
+position 与 transform：经典的居中方法，适用于绝对定位的元素。
+
+text-align 主要用于文本和行内元素的对齐。
+margin: auto 用于块级元素的居中。
+flexbox 和 grid 布局提供了更加灵活的对齐方式，适合复杂的布局需求。
+
+4.浏览器出于安全考虑，禁止从一个源（如 example.com）访问另一个源（如 api.example.com）的资源，防止恶意网站窃取用户信息。这就是为什么需要 CORS 头部来明确声明允许跨域请求的来源
+
+5.为什么要确保 CorsMiddleware 在 CommonMiddleware 之前？
+    预检请求（OPTIONS 请求）：当浏览器发起跨域请求时，浏览器首先发送一个预检请求（OPTIONS 请求）来检查服务器是否允许实际的跨域请求。如果 CorsMiddleware 被放在 CommonMiddleware 之后，CommonMiddleware 可能会对该预检请求做一些额外的处理，影响 CORS 头部的正确设置，导致跨域请求被阻止。
+
+    顺序影响：Django 的中间件是按顺序执行的，每个中间件会在请求到达视图之前或响应返回给浏览器之前做一些处理。将 CorsMiddleware 放在前面，确保它能够提前设置正确的 CORS 响应头，避免其他中间件干扰跨域请求的处理。
+
+6.label for="password">密码</label>：for 属性指向具有 id="password" 的输入字段。
+<input type="password" id="password">：输入框的 id 与 label 的 for 属性值相匹配，确保点击标签时，输入框会获得焦点。
+
+7.withCredentials: true 的作用是让浏览器在发送!跨域请求!时，!携带并接受 !cookies（包括 sessionid）。
+如果不设置 withCredentials: true，即使 Django 正确地在响应中设置了 Set-Cookie，浏览器不会将 sessionid 存储在 cookies 中，或者不会将其用于随后的请求。
+
+8.为什么 credentials: 'include' 能保证一致性？
+场景	不加 credentials	加 credentials: 'include'
+同域名请求	浏览器默认发送 Cookie	效果相同（但显式设置更可靠）
+跨域请求	浏览器不会发送 sessionid	浏览器会发送 sessionid
+后端响应	Django 可能生成新 sessionid	复用同一个 sessionid
+
+如果不加 credentials: 'include'：
+    跨域时浏览器会拒绝发送 sessionid，导致 Django 每次都会创建新 Session，session['code'] 丢失。
+如果加了 credentials: 'include'：
+    浏览器会老老实实带上之前存储的 sessionid，确保 Django 能读到同一个 Session。
+
+9.'same-origin'（默认值）：仅在同源请求时发送 cookies。也就是说，只有当前请求和目标 URL 在同一个域名下时，才会发送 cookies。
+'include'：无论请求是否跨域，都携带 cookies 和其他凭证（比如 SessionID）。
+'omit'：不携带任何凭证，通常用于不需要 cookies 的请求。
+
+10.updatecart:(goodId) => 'apit/cart/item/update/${goodId}' 这一行看起来是一个对象的属性定义，实际上它有两个符号在不同的上下文中扮演不同的角色。
+解释：
+: 这个冒号（colon）表示对象字面量中定义属性的语法。例如，在一个对象中，如果你要定义一个属性及其对应的值，就会使用冒号。
+=> 是箭头函数的符号，用来定义函数的简洁语法。
+
+11.如果你手动将 token 存储到 sessionStorage 或 localStorage，它会在页面刷新后继续存在（即使你没有设置 persist: true）。
+persist: true 是 Pinia 中的一个配置项，它会自动将 store 的数据（如 userinfo）存储到浏览器的存储中（通常是 localStorage 或 sessionStorage），从而在刷新后恢复这些数据。
+
+12.内置验证：serializers.DecimalField 会自动进行基础验证，如检查数字类型和小数位数。
+自定义验证：如果你有额外的验证需求（例如：确保总价大于零），可以通过 validate_字段名 或 validate 方法来实现。
+
+13.
+validate 方法是针对整个序列化器数据的通用验证，你可以在这里对多个字段进行联合验证。
+validate_字段 方法是针对单个字段的自定义验证，用于验证每个字段的特殊需求。在你的情况下，如果没有复杂的逻辑要求，完全可以在 validate 方法中进行所有字段的验证。

@@ -1,0 +1,18 @@
+### 获取所有地址信息
+GET http://localhost:8000/address/all/
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE4MTAxOTExODUsInBob25lIjoiMTgwOTA0ODA2MjciLCJwd2QiOiIxMjM0NTYiLCJzZXJjZXQiOiIxMjM0In0.iSjSEra-Tv6PQn1qpF9zPWiTzu4nmIX_jTNpwNlQN8g
+
+### 增加地址信息
+POST http://localhost:8000/address/add/
+Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE4MTAxOTExODUsInBob25lIjoiMTgwOTA0ODA2MjciLCJwd2QiOiIxMjM0NTYiLCJzZXJjZXQiOiIxMjM0In0.iSjSEra-Tv6PQn1qpF9zPWiTzu4nmIX_jTNpwNlQN8g
+
+{
+    "name":"魏帮容",
+    "phone":"19090480627",
+    "province": "北京市",
+    "city": "北京市",
+    "district": "海淀区",
+    "detail": "中关村大街88号小米科技园",
+    "isDefault": 0
+}

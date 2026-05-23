@@ -1,0 +1,2 @@
+### 测试获取分类信息
+GET http://localhost:8000/banner/all/

@@ -1,0 +1,155 @@
+/* 轮播图容器 */
+.banner {
+  height: 460px;
+  position: relative;
+  overflow: hidden; /* 新增 */
+}
+
+/* 轮播图轨道（包含所有幻灯片） */
+.banner-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 单个幻灯片样式 */
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 导航箭头（兼容原有样式） */
+.banner-pointer {
+  position: absolute;
+  color: #b8c3cb;
+  width: 40px;
+  height: 70px;  
+  line-height: 70px;
+  text-align: center;
+  cursor: pointer;
+  top: 50%;
+  margin-top: -35px;
+  z-index: 10;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.banner-pointer .iconfont {
+  font-size: 30px;
+}
+
+.banner-pointer-left {
+  left: 234px; /* 保持原有左侧菜单宽度 */
+}
+
+.banner-pointer-right {
+  right: 0px;
+}
+
+.banner-pointer:hover {
+  background-color: rgba(0, 0, 0, .5);
+  color: #fff;
+}
+
+/* 指示器圆点（优化后） */
+.banner-dots {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  z-index: 10;
+  display: flex; /* 改用flex布局 */
+  gap: 8px; /* 替代margin间距 */
+}
+
+.banner-dots span {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0,0,0,0.4);
+  border: 2px solid rgba(255,255,255,.3);
+  border-radius: 50%; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banner-dots span.banner-dots-selected {
+  background-color: rgba(255,255,255,.3);
+  border-color: rgba(0,0,0,0.4);
+  transform: scale(1.2);
+}
+
+/* 左侧菜单栏（保持原有样式） */
+.banner-menu {
+  position: absolute;
+  background-color: rgba(105, 101, 101, 0.6);
+  top: 0;
+  left: 0;
+  width: 234px;
+  height: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  z-index: 5;
+}
+
+/* 其他原有菜单样式保持不变 */
+.banner-menu-item {
+  height: 42px;
+  line-height: 42px;
+  padding-left: 30px;
+  padding-right: 20px; 
+  color: #fff;
+  cursor: pointer;
+}
+
+.banner-menu li:hover .banner-menu-item {
+  background-color: #ff6700;
+}
+
+.banner-sub-menu {
+  display: none;
+  position: absolute;
+  left: 234px;
+  top: 0;
+  height: 100%;
+  width: 992px;
+  background-color: #fff;
+}
+
+.banner-menu li:hover .banner-sub-menu {
+  display: block;
+}
+
+.banner-sub-menu a {
+  width: 25%;
+  height: 16.666%;
+  padding: 0 20px;
+}
+
+.banner-sub-menu a img {
+  width: 40px;
+  height: 40px;
+  margin-top: 17px;
+  margin-right: 12px;
+}
+
+.banner-sub-menu a span {
+  width: 154px;
+  margin-top: 28px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
